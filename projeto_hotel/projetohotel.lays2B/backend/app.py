@@ -1,5 +1,10 @@
 import os
 from flask import Flask, send_from_directory
+import openpyxl
+from datetime import (
+   datetime,
+)
+app = Flask(__name__)
 
 
 # caminho base do projeto (uma pasta acima do backend)
@@ -11,6 +16,31 @@ FRONTEND_DIR = os.path.join(BASE_DIR, "frontend")
 #PASTA STATIC
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 
+DB_DIR = os.path.join (os.path.dirname(__file__), "..", "db")
+EXCEL_FILE = os.path.join (DB_DIR, "clienteS.xlSx")
+
+COLUMNS = [
+    "ID",
+    "Nome",
+    "CPF",
+    "Email",
+    "Telefone",
+    "Endereço",
+    "Observações",
+    "Data Cadastro",
+
+]
+
+def init_excel():
+    if not os.path.exists(DB_DIR):
+       os.makedirs(DB_DIR)
+
+    if not os.path.exists(EXCEL_FILE):
+       workbook = openpyxl.Workbook()
+       sheet = workbook.active
+       sheet.title = "Clientes"
+       sheet.append(COLUMNS)
+       workbook.save(EXCEL_FILE)
 
 app = Flask(__name__, static_folder=STATIC_DIR,static_url_path="/"+ STATIC_DIR)
 
