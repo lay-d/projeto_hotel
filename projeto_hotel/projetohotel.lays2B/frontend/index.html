@@ -1,62 +1,69 @@
-
-
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>cadastro</title>
-        <body>
-            <form id="formCadastro">
-                <table>
-                <div>
-                   <div> 
-                       <label>Nome:</label>
-                       <input type="text" name="nome" required>
-                   </div>
-                </div>
-                <div>
-                    <div> 
-                        <label>CPF:</label>
-                        <input type="text" name="CPF" required>
-                    </div>
-                </div>
-                <div>
-                    <div> 
-                        <label>Email:</label>
-                        <input type="email" name="email" required>
-                    </div>
-                </div>
-                <div>
-                    <div> 
-                        <label>Telefone:</label>
-                        <input type="text" name="telefone" required>
-                    </div>
-                </div>
-                <div>
-                    <div> 
-                        <label>Endereço:</label>
-                        <input type="text" name="endereço" required>
-                    </div>
-                </div>
-                <div>
-                    <div> 
-                        <label>Observação</label>
-                        <textarea name="obs:"></textarea>
-                    </div>
-                </div>
-                  <div>
-                    <div> 
-                        <label>Aviso: Fazer reserva com antecedência, com até 15 dias antes</label>
-                        <textarea="text" name="aviso" required>
-                    </div>
-                </div>
 
-                <button type="submit">Cadastrar</button>
-            
-            </form>
-        </body>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel</title>
+</head>
+
+<body>
+    <nav>
+        <div>
+            <a href="/"> Hotel </a>
+            <button type="button">
+                <span></span>
+            </button>
+            <div id="narvbarNav">
+                <ul>
+                    <li>
+                        <a href="/"> Cadastro</a>
+                    </li>
+                    <li>
+                        <a href="/consulta"> Consultar</a>
+                    </li>
+                </ul>
+            </div>
+    </nav>
+
+    <form id="Cadastroformulario">
+
+        <div>
+            <div>
+
+                <label> Nome</label>
+                <input type="text" name="nome" required>
+            </div>
+        </div>
+        <div>
+            <div>
+                <label> CPF</label>
+                <input type="text" name="CPF" required>
+            </div>
+        </div>
+        <div>
+            <div>
+                <label> Email</label>
+                <input type="email" name="email" required>
+            </div>
+        </div>
+        <div>
+            <div>
+                <label> Telefone</label>
+                <input type="text" name="Telefone" required>
+            </div>
+        </div>
+        <div>
+            <div>
+
+                <label>
+                    Observações:
+                </label>
+                <textarea="text" name="Observações" required>
+            </div>
+        </div>
+        <button type="submit">Cadastrar</button>
+    </form>
+</body>
+
 </html>

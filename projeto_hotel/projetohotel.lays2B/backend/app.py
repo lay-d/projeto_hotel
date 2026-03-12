@@ -36,35 +36,32 @@ def init_excel():
        os.makedirs(DB_DIR)
 
     if not os.path.exists(EXCEL_FILE):
-       workbook = openpyxl.Workbook()
-       sheet = workbook.active
+       Workbook = openpyxl.Workbook()
+       sheet = Workbook.active
        sheet.title = "Clientes"
        sheet.append(COLUMNS)
-       workbook.save(EXCEL_FILE)
+       Workbook.save(EXCEL_FILE)
 
 app = Flask(__name__, static_folder=STATIC_DIR,static_url_path="/"+ STATIC_DIR)
 
-# =================================
-
-# ROTA PRINCIPAL (HTML)
-#ROTAS DA PAGINA
-#Pagina inicial
-# ================================
 
 @app.route("/")
 def home():
     return send_from_directory(FRONTEND_DIR,"index.html")
 
 
-#
 @app.route("/consulta")
 def consultar_page():
     return send_from_directory(FRONTEND_DIR, "consulta.html")
 
 
-#
 @app.route("/alterar")
 def alterar_page():
     return send_from_directory(FRONTEND_DIR, "alterar.html")
 
-app.run()
+if __name__ == "__main__":
+    print("BASE_DIR", BASE_DIR)
+    print("FRONTEND_DIR", FRONTEND_DIR)
+    print("STATIC_DIR", STATIC_DIR)
+    init_excel()
+    app.run(debug=True)
