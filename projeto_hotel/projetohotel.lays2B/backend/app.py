@@ -1,25 +1,28 @@
 import os
-from flask import Flask, send_from_directory, jsonify, request, field
-import openpyxl
+from flask import Flask, send_from_directory, request, jsonify
+import openpyxl # Para ver e editar arquivos .xlsx
 from datetime import (
-   datetime,
+    datetime,
 )
-app = Flask(__name__)
-
-
-# caminho base do projeto (uma pasta acima do backend)
+# Caminho base do projeto (uma pastacima do backend)
 BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
-# pasta frontend (html e js)
+# Pasta frontend (HTML, JS)
 FRONTEND_DIR = os.path.join(BASE_DIR, "frontend")
 
-#PASTA STATIC
+# Pasta static (CSS)
 STATIC_DIR = os.path.join(BASE_DIR, "static")
 
-DB_DIR = os.path.join (os.path.dirname(__file__), "..", "db")
-EXCEL_FILE = os.path.join (DB_DIR, "clienteS.xlSx")
+# Pasta db (Banco de Dados)
+DB_DIR = os.path.join(BASE_DIR, "db")
+EXCEL_FILE = os.path.join(DB_DIR, "clientes.xlsx")
 
-COLUMNS = [
+# Pasta do JS
+JS_DIR = os.path.join(BASE_DIR, "frontend", "js")
+JS_FILE = os.path.join(JS_DIR, "main.js")
+
+# Cabecalhos das colunas do Excel (linha 1)
+COLUNAS = [
     "ID",
     "Nome",
     "CPF",
@@ -27,105 +30,115 @@ COLUMNS = [
     "Telefone",
     "Endereço",
     "Observações",
-    "Data Cadastro",
-
+    "Data Cadastro"
 ]
 
 def init_excel():
     if not os.path.exists(DB_DIR):
-       os.makedirs(DB_DIR)
-
+        os.makedirs(DB_DIR) # Cria a pasta se não existir
+    
     if not os.path.exists(EXCEL_FILE):
-       Workbook = openpyxl.Workbook()
-       sheet = Workbook.active
-       sheet.title = "Clientes"
-       sheet.append(COLUMNS)
-       Workbook.save(EXCEL_FILE)
+        workbook = openpyxl.Workbook() # Cria a planilha
+        sheet = workbook.active # Pega a planilha ativa
+        sheet.title = "Clientes" # Nomeia a aba principal
+        sheet.append(COLUNAS) # Adiciona os títulos das colunas
+        workbook.save(EXCEL_FILE) # Salva o arquivo Excel
 
-app = Flask(__name__, static_folder=STATIC_DIR,static_url_path="/"+ STATIC_DIR)
+app = Flask(__name__, static_folder=STATIC_DIR, static_url_path="/static")
 
-
+# Pagina principal
 @app.route("/")
 def home():
-    return send_from_directory(FRONTEND_DIR,"index.html")
+    # return "Bom dia galera 2B!"
+    return send_from_directory(FRONTEND_DIR, "index.html")
 
-
+# Pagina de consulta
 @app.route("/consulta")
-def consultar_page():
-    return send_from_directory(FRONTEND_DIR, "consulta.html")
+def consulta_page():
+    return send_from_directory(FRONTEND_DIR, "consultar.html")
 
-
+# Pagina de alteracao
 @app.route("/alterar")
 def alterar_page():
     return send_from_directory(FRONTEND_DIR, "alterar.html")
 
-@app.route("assets/<path:filename>")
+# Rota para servir imagens, sripts ou outros arquivos na pasta "assets"
+@app.route("/assets/<path:filename>")
 def assets(filename):
     return send_from_directory("../frontend/assets", filename)
 
+# -------------------------------------------------------------------------------------------------
+# CADASTRAR CLIENTE
+# -------------------------------------------------------------------------------------------------
 @app.route("/cadastrar", methods=["POST"])
-def cadastar_cliente():
-
+def cadastrar_cliente():
+    """
+    Recebe os dados do formulário (em JSON), valida e salva um novo cliente
+    """
     try:
-        data = request.json
+        data = request.json # Dados enviados do frontend via POST (JSON)
 
-        required_fields = ["nome", "cpf", "email", "telefone", "endereço"]
-        if not all(field in data[field] for field in required_fields):
+        # Capmos obrigatórios que o usuário deve preencher
+        required_fields = ["nome", "cpf", "email", "telefone", "endereco"]
+        if not all(field in data and data[field] for field in required_fields):
             return (
                 jsonify(
                     {
                         "status": "error",
-                        "message": "todos os campos obrigatórios devem ser preenchidos"
-                    }   
+                        "message": "Todos os campos obrigatórios devem ser preenchidos."
+                    }
                 ),
                 400,
-            )       
-        workbook = openpyxl.load_workbook(EXCEL_FILE) 
-        sheet = workbook. active
+            )
+        workbook = openpyxl.load_workbook(EXCEL_FILE) # Abre o arquivo Excel
+        sheet = workbook.active
+
+        # Cria um ID automático (último ID + 1)
         last_id = 0
         if sheet.max_row > 1:
-            last_id = sheet.cell(row=sheet.max_row, column=1). value or 0
+            last_id = sheet.cell(row=sheet.max_row, column=1).value or 0
         new_id = last_id + 1
 
+        # Cria uma nova linha com os dados informados
         novo_cliente = [
             new_id,
             data.get("nome"),
             data.get("cpf"),
             data.get("email"),
             data.get("telefone"),
-            data.get("endereço"),
-            data.get("observaçoes", ""),
-            datetime.now().strftime("%Y-%m-%d"),
+            data.get("endereco"),
+            data.get("observacoes", ""), # Campo opcional
+            datetime.now().strftime("%Y-%m-%d") # Data atual
         ]
 
-        sheet.append(novo_cliente)
-        workbook.save(EXCEL_FILE)
+        sheet.append(novo_cliente) # Adiciona nova linha no Excel
+        workbook.save(EXCEL_FILE) # Salva alterações
 
+        # Retorna mensagem de sucesso
         return (
             jsonify(
                 {
-                    "status": "success",
-                    "message": "Cliente cadastrado com sucesso!",
-                    "id": new_id, 
+                "status": "sucess",
+                "message": "Cliente cadastrado com sucesso!",
+                "id": new_id
                 }
             ),
             201,
         )
     except Exception as e:
-        
+        # Tratamento deerro genérico
         return (
-            jsonify({"status": "error", "message": f"Erro ao salvar no servidor: {e}"}),
-            500,   
+            jsonify ({"status": "error", "message": f"Erro ao salvar no servidor: {e}"}),
+            500,
         )
-        
-              
-            
-
-
 
 if __name__ == "__main__":
-    print("BASE_DIR", BASE_DIR)
-    print("FRONTEND_DIR", FRONTEND_DIR)
-    print("STATIC_DIR", STATIC_DIR)
+    print("Base: ", BASE_DIR)
+    print("Front: ", FRONTEND_DIR)
+    print("Static:", STATIC_DIR)
+    print("DB:", DB_DIR)
+    print("Excel:", EXCEL_FILE)
+    print("Pasta JS:", JS_DIR)
+    print("JS:", JS_FILE)
     init_excel()
     app.run(debug=True)
