@@ -1,0 +1,50 @@
+/* =========================================================================
+🎨 STYLE.CSS
+💡 Tema: Azul turquesa, preto e branco, com degradê.
+Design limpo e leve, voltado para alunos iniciantes.
+========================================================================= */
+
+/* 🧭 Fundo geral da página */
+body {
+    background: linear-gradient(135deg, #00c2c7, #0077b6);
+    color: #000;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+/* 🌅 Carousel */
+.carousel img {
+    height: 250px;
+    object-fit: cover;
+}
+
+/* 🧾 Formulários */
+form {
+    background-color: #ffffffcc;
+    border-radius: 15px;
+}
+
+/* Botões */
+.btn-primary {
+    background-color: #0077b6;
+    border-color: #005f8a;
+}
+
+.btn-primary:hover {
+    background-color: #00c2c7;
+    border-color: #0077b6;
+}
+
+/* Rodapé */
+footer {
+    background-color: #000;
+    color: #fff;
+}
+
+/* ❄️ Canvas da neve (JS criará o efeito) */
+#snowCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+}

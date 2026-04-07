@@ -55,3 +55,31 @@ document.addEventListener("DOMContentLoaded", function() {
         })
     }
 })
+
+ const btnBuscar = document.getElementById('btnBuscar');
+
+ if (btnBuscar) {
+    btnBuscar.addEventListener('click', async () => {
+
+        const nome = document.getElementById('campoBusca').ariaValueMax;
+
+        const resp = await fetch(`/buscar?nome=${nome}`);
+        const clientes = await resp.json();
+
+        const tabela = document.getElementById('tabelaResultados');
+        tabela.innerHTML = '';
+
+        clientes.forEach(cli => {
+            const row = `
+            <tr>
+                <td>${cli.ID}</td>
+                <td>${cli.nome}</td>
+                <td>${cli.CPF}</td>
+                <td>${cli.Email}</td>
+                <td>${cli.Telefone}</td>
+                <td><a href="/alterar?id=${cli.ID}" class="btn btn-sm btn-warning">Editar</a></td>
+            </tr>`;
+            tabela.innerHTML += row;
+        })
+    })
+ }
