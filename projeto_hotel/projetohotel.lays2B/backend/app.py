@@ -131,6 +131,40 @@ def cadastrar_cliente():
             jsonify ({"status": "error", "message": f"Erro ao salvar no servidor: {e}"}),
             500,
         )
+@app.route("/buscar", methods=["GET"])
+def buscar_clientes():
+    """
+    
+    Busca clientes pelo nome (nâo diferencia maiúsculas/minúsculas)
+
+    """
+    nome_query = request.args.get("nome", "").lower()
+
+    try:
+        workbook = openpyxl.load_workbook(EXCEL_FILE)
+        sheet =  workbook.active
+        resultados = []
+
+        for row in sheet.iter_rows(min_row=2, values_only=True):
+            cliente = dict(zip(COLUNAS,row))
+            nome_cliente = (cliente.get("Nome") or ""). lower()
+
+            if nome_query in nome_cliente:
+                resultados.append(cliente)
+
+        return jsonify(resultados)
+    
+    except FileNotFoundError:
+        return (
+            jsonify({"status": "error", "message": "Arquivo de dados não encontrado."}),
+            404,
+        )
+    except Exception as e:
+        return (
+            jsonify({"status": "error", "message": f"Erro ao ler os dados: {e}"}),
+            500,
+        )
+
 
 if __name__ == "__main__":
     print("Base: ", BASE_DIR)
