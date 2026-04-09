@@ -22,7 +22,7 @@ JS_DIR = os.path.join(BASE_DIR, "frontend", "js")
 JS_FILE = os.path.join(JS_DIR, "main.js")
 
 # Cabecalhos das colunas do Excel (linha 1)
-COLUNAS = [
+COLUMNS = [
     "ID",
     "Nome",
     "CPF",
@@ -41,7 +41,7 @@ def init_excel():
         workbook = openpyxl.Workbook() # Cria a planilha
         sheet = workbook.active # Pega a planilha ativa
         sheet.title = "Clientes" # Nomeia a aba principal
-        sheet.append(COLUNAS) # Adiciona os títulos das colunas
+        sheet.append(COLUMNS) # Adiciona os títulos das colunas
         workbook.save(EXCEL_FILE) # Salva o arquivo Excel
 
 app = Flask(__name__, static_folder=STATIC_DIR, static_url_path="/static")
@@ -146,7 +146,7 @@ def buscar_clientes():
         resultados = []
 
         for row in sheet.iter_rows(min_row=2, values_only=True):
-            cliente = dict(zip(COLUNAS,row))
+            cliente = dict(zip(COLUMNS,row))
             nome_cliente = (cliente.get("Nome") or ""). lower()
 
             if nome_query in nome_cliente:
@@ -162,6 +162,32 @@ def buscar_clientes():
     except Exception as e:
         return (
             jsonify({"status": "error", "message": f"Erro ao ler os dados: {e}"}),
+            500,
+        )
+
+@app.route("/cliente/<int:cliente_id>", methods=["GET"])
+def get_cliente(cliente_id):
+    """"
+
+    Retorna os dados completos de um cliente pelo seu ID.
+    """
+    try:
+        workbook = openpyxl.load_workbook(EXCEL_FILE)
+        sheet = workbook.active
+
+        # Procura o cliente linha por linha
+        for now_idx in range(2, sheet.max_row + 1):
+            row_idx = sheet.cell(row=row_idx, column=1).value
+            if row_idx == cliente_id:
+                row_values =  [cell.value for cell in sheet[row_idx]]
+                cliente = dict(zip(COLUMNS, row_values))
+                return jsonify(cliente)
+            
+            #se não encontrar o id
+            return jsonify({"status": "error", "message": "Cliente não encontrado."}), 404
+    except Exception as e:
+        return (
+            jsonify({"status": "error", "message": f"Erro ao buscar o cliente: {e}"}),
             500,
         )
 
