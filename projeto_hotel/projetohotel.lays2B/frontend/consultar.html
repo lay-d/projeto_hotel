@@ -37,49 +37,26 @@
             </div>
         </div>
     </nav>
-    <form id="formCadastro">
+    <div> <h2>🔍consulta de clientes </h2>
         <div>
-            <div>
-                <label> Nome:</label>
-                <input type="text" name="nome" required>
-            </div>
-        </div>
-        <div>
-            <div>
-                <label> CPF:</label>
-                <input type="text" name="cpf" required>
-            </div>
-        </div>
+            <input type="text" id="campoBusca" placeholder="digite o nome do clente"> 
+            <button id="btnBusca">Buscar</button> 
+       </div> <!--tabela de resultados--> 
 
-        <div>
-            <div>
-                <label> Email:</label>
-                <input type="email" name="email" required>
-            </div>
-        </div>
-        <div>
-            <div>
-                <label> Telefone:</label>
-                <input type="text" name="telefone" required>
-            </div>
-        </div>
+       <table> 
+           <thead>
+               <tr>
+                   <th>ID</th>
+                   <th>Nome</th>
+                   <th>CPF</th>
+                   <th>Email</th>
+                   <th>Telefone</th>
+                   <th>Ações</th>
+               </tr>
+           </thead>
 
-        <div>
-            <div>
-                <label> Endereço:</label>
-                <input type="text" name="endereco" required>
-            </div>
-        </div>
-
-        <div>
-            <div>
-                <label> Observação:</label>
-                <textarea type="text" name="observacao" required>
-            </div>
-        </div>
-        <button type="submit">Cadastrar</button>
-    </form>
-
+           <tbody id="tabelaResultados"></tbody>
+       </table> 
+   </div>
 </body>
-
 </html>
