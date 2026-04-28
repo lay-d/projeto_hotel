@@ -24,11 +24,11 @@ JS_FILE = os.path.join(JS_DIR, "main.js")
 # Cabecalhos das colunas do Excel (linha 1)
 COLUMNS = [
     "ID",
-    "Nome",
+    "nome",
     "CPF",
-    "Email",
+    "email",
     "Telefone",
-    "Endereço",
+    "endereço",
     "Observações",
     "Data Cadastro"
 ]
@@ -79,7 +79,7 @@ def cadastrar_cliente():
         data = request.json # Dados enviados do frontend via POST (JSON)
 
         # Capmos obrigatórios que o usuário deve preencher
-        required_fields = ["nome", "cpf", "email", "telefone", "endereco"]
+        required_fields = ["nome", "CPF", "email", "Telefone", "endereço"]
         if not all(field in data and data[field] for field in required_fields):
             return (
                 jsonify(
@@ -103,11 +103,11 @@ def cadastrar_cliente():
         novo_cliente = [
             new_id,
             data.get("nome"),
-            data.get("cpf"),
+            data.get("CPF"),
             data.get("email"),
-            data.get("telefone"),
-            data.get("endereco"),
-            data.get("observacoes", ""), # Campo opcional
+            data.get("Telefone"),
+            data.get("endereço"),
+            data.get("Observações", ""), # Campo opcional
             datetime.now().strftime("%Y-%m-%d") # Data atual
         ]
 
@@ -147,7 +147,7 @@ def buscar_clientes():
 
         for row in sheet.iter_rows(min_row=2, values_only=True):
             cliente = dict(zip(COLUMNS,row))
-            nome_cliente = (cliente.get("Nome") or ""). lower()
+            nome_cliente = (cliente.get("nome") or ""). lower()
 
             if nome_query in nome_cliente:
                 resultados.append(cliente)
@@ -159,6 +159,7 @@ def buscar_clientes():
             jsonify({"status": "error", "message": "Arquivo de dados não encontrado."}),
             404,
         )
+    
     except Exception as e:
         return (
             jsonify({"status": "error", "message": f"Erro ao ler os dados: {e}"}),
@@ -191,7 +192,55 @@ def get_cliente(cliente_id):
             500,
         )
 
+@app.route("/api/atualizar/<int:cliente_id>", methods=["POST"])
+def atualizar_cliente(cliente_id):
+    """
+    Função para alterar as informações de um hospede no nosso banco de dados (Excel)
+    """
+    try:
 
+        data = request.json
+
+        workbook = openpyxl.__load_workbook(EXCEL_FILE)
+
+        sheet = workbook.active
+
+        row_to_update = 1 
+
+        for row_idx in range(2, sheet. max_row + 1):
+
+            if sheet.cell(row=row_idx, column=1). value == cliente_id:
+               row_to_update = row_idx
+               break
+        if row_to_update == -1:
+            return(
+                jsonify({
+                    "status": "error",
+                    "message": "Cliente não encontrado para atualização.",
+                }),
+                404,
+            )
+        
+        sheet.cell(row=row_to_update, column=2, value=data.get("nome"))
+        sheet.cell(row=row_to_update, column=3, value=data.get("CPF"))
+        sheet.cell(row=row_to_update, column=4, value=data.get("email"))
+        sheet.cell(row=row_to_update, column=5, value=data.get("Telefone"))
+        sheet.cell(row=row_to_update, column=6, value=data.get("endereço"))
+        sheet.cell(row=row_to_update, column=7, value=data.get("Observações"))
+
+        workbook.save(EXCEL_FILE)
+
+        return jsonify({
+            "status": "success",
+            "message": "Dados do cliente atualizados com sucesso!",
+        })
+    
+    except Exception as e:
+
+        return (
+            jsonify({"status": "error", "message": f"Erro ao atualizar dados: {e}"}),
+            500,
+        )
 if __name__ == "__main__":
     print("Base: ", BASE_DIR)
     print("Front: ", FRONTEND_DIR)
