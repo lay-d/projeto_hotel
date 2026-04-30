@@ -1,73 +1,49 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hotel</title>
+    <title>Cadastro de Clientes</title>
 </head>
-
 <body>
-    <nav>
-        <div>
-            <a href="/"> Hotel </a>
-            <button type="button">
-                <span></span>
-            </button>
-            <div id="narvbarNav">
-                <ul>
-                    <li>
-                        <a href="/"> Cadastro</a>
-                    </li>
-                    <li>
-                        <a href="/consulta"> Consultar</a>
-                    </li>
-                </ul>
-            </div>
-    </nav>
 
-    <form id="Cadastroformulario">
+<nav>
+    <ul>
+        <li><a href="/">Cadastro</a></li>
+        <li><a href="/consulta">Consultar</a></li>
+    </ul>
+</nav>
 
-        <div>
-            <div>
+<form id="formCadastro">
+    <div>
+        <label>Nome:</label>
+        <input type="text" name="nome" required>
+    </div>
+    <div>
+        <label>CPF:</label>
+        <input type="text" name="CPF" required>
+    </div>
+    <div>
+        <label>Email:</label>
+        <input type="email" name="email" required>
+    </div>
+    <div>
+        <label>Telefone:</label>
+        <input type="text" name="Telefone" required>
+    </div>
+    <div>
+        <label>Endereço:</label>
+        <input type="text" name="endereco" required>
+    </div>
+    <div>
+        <label>Observações:</label>
+        <textarea name="observacoes"></textarea>
+    </div>
+    <button type="submit">Cadastrar</button>
+</form>
 
-                <label> Nome</label>
-                <input type="text" name="nome" required>
-            </div>
-        </div>
-        <div>
-            <div>
-                <label> CPF</label>
-                <input type="text" name="CPF" required>
-            </div>
-        </div>
-        <div>
-            <div>
-                <label> Email</label>
-                <input type="email" name="email" required>
-            </div>
-        </div>
-        <div>
-            <div>
-                <label> Telefone</label>
-                <input type="text" name="Telefone" required>
-            </div>
-        </div>
-        <div>
-            <div>
+<div id="mensagem"></div>
 
-                <label>
-                    Observações:
-                </label>
-                <textarea="text" name="Observações" required>
-            </div>
-        </div>
-        <button type="submit">Cadastrar</button>
-    </form>
-
-
-
-
+<script src="assets/js/main.js"></script>
 </body>
-
 </html>
