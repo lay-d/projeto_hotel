@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Clientes</title>
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="/">Cadastro</a></li>
+        <li><a href="/consulta">Consultar</a></li>
+    </ul>
+</nav>
+
+<form id="formCadastro">
+    <div>
+        <label>Nome:</label>
+        <input type="text" name="nome" required>
+    </div>
+    <div>
+        <label>CPF:</label>
+        <input type="text" name="CPF" required>
+    </div>
+    <div>
+        <label>Email:</label>
+        <input type="email" name="email" required>
+    </div>
+    <div>
+        <label>Telefone:</label>
+        <input type="text" name="Telefone" required>
+    </div>
+    <div>
+        <label>Endereço:</label>
+        <input type="text" name="endereco" required>
+    </div>
+    <div>
+        <label>Observações:</label>
+        <textarea name="observacoes"></textarea>
+    </div>
+    <button type="submit">Cadastrar</button>
+</form>
+
+<div id="mensagem"></div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

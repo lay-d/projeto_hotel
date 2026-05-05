@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultar Clientes</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="/">Cadastro</a></li>
+        <li><a href="/consulta">Consultar</a></li>
+    </ul>
+</nav>
+
+<h2>Consulta de Clientes</h2>
+<div>
+    <input type="text" id="campoBusca" placeholder="Digite o nome do cliente">
+    <button id="btnBuscar">Buscar</button>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Endereço</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody id="tabelaResultados"></tbody>
+</table>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
