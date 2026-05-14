@@ -1,0 +1,29 @@
+.carousel img {
+    height: 250px;
+    object-fit: cover;
+}
+
+body {
+    background: linear-gradient(135deg, #00c2c7, #0077b6);
+
+    color: #000;
+
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+form {
+    background-color: #ffffffcc;
+    border-radius: 15px;
+}
+.btn-primary {
+    background-color: #0077b6;
+
+    border-color: #005f8a;
+
+}
+
+.btn-primary:hover {
+    background-color: #00c2c7;
+
+    border-color: #0077b6;
+}
