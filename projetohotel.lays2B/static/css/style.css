@@ -4,7 +4,7 @@
 }
 
 body {
-    background: linear-gradient(135deg, #00c2c7, #0077b6);
+    background: linear-gradient(135deg, #9800c7, #b459d5);
 
     color: #000;
 
@@ -16,26 +16,25 @@ form {
     border-radius: 15px;
 }
 .btn-primary {
-    background-color: #0077b6;
-
-    border-color: #005f8a;
+    background-color: #9800c7;
+    border-color:  #b459d5 ;
 
 }
 
 .btn-primary:hover {
-    background-color: #00c2c7;
+    background-color: #b459d5 ;
 
-    border-color: #0077b6;
+    border-color: #9800c7;
 }
 
 footer {
-    background-color: #000;
-    color: #fff;
+    background-color: #070008;
+    color: #f1eff1;
 }
 
 .bg-gradient {
-    background: linear-gradient(90deg, #006d77, #00b4d8);
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(90deg, #b90bbf, #fc2de0);
+    box-shadow: 0px 4px 8px rgba(181, 12, 223, 0.3);
 }
 
 .navbar-brand {
@@ -52,6 +51,23 @@ footer {
 }
 
 .nav-link:hover {
-    color: #fffae6;
+    color: #fffae6 !important;
     text-shadow: 0px 0px 6px rgba(255, 255, 255, 0.7);
 }
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    opacity: 0.95;
+    backdrop-filter: blur(6px);
+}
+
+#snowCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 9999;
+}
+
