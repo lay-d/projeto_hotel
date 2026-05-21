@@ -1,74 +1,122 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Clientes</title>
 
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="/static/css/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" defer></script>
 
 </head>
+
 <body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-gradient">
+        <div class="container-fluid">
+            
+            <a class="navbar-brand fw-bold text-white" href="/"> Hotel Lays</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" href="/"> Cadastro</a>
+                    </li>
+                    <li class="nav-item">   
+                        <a class="nav-link text-white" href="/consulta"> Consultar</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
     <header>
+        
+
         <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
+            
+
                 <div class="carousel-item active">
                     <img src="assets/img/banner1.jpg" class="d-block w-100" alt="Banner 1">
                 </div>
+
                 <div class="carousel-item">
                     <img src="assets/img/banner2.jpg" class="d-block w-100" alt="Banner 2">
                 </div>
+
                 <div class="carousel-item">
-                    <img src="assets/img/banner3.jpg" class="=d-block w-100" alt="Banner 3">
+                    <img src="assets/img/banner3.jpg" class="d-block w-100" alt="Banner 3">
                 </div>
+            
             </div>
         </div>
     </header>
 
-<nav>
-    <ul>
-        <li><a href="/">Cadastro</a></li>
-        <li><a href="/consulta">Consultar</a></li>
-    </ul>
-</nav>
+    <main class="container mt-4">
 
-<form id="formCadastro">
-    <div>
-        <label>Nome:</label>
-        <input type="text" name="nome" required>
-    </div>
-    <div>
-        <label>CPF:</label>
-        <input type="text" name="CPF" required>
-    </div>
-    <div>
-        <label>Email:</label>
-        <input type="email" name="email" required>
-    </div>
-    <div>
-        <label>Telefone:</label>
-        <input type="text" name="Telefone" required>
-    </div>
-    <div>
-        <label>Endereço:</label>
-        <input type="text" name="endereco" required>
-    </div>
-    <div>
-        <label>Observações:</label>
-        <textarea name="observacoes"></textarea>
-    </div>
-    <button type="submit" class="btn-primary">Cadastrar</button>
-</form>
-
-<div id="mensagem"></div>
+        <h2 class="text-center mb-4"> Cadastro de Clientes</h2>
     
+        <form id="formCadastro" class="p-3 rounded bg-light purple">
+        <div>
+            <div>
+                <label> Nome:</label>
+                <input type="text" name="nome" required>
+            </div>
+        </div>
+        <div>
+            <div>
+                <label> CPF:</label>
+                <input type="text" name="cpf" required>
+            </div>
+        </div>
+        
+        <div>
+            <div>
+                <label> Email:</label>
+                <input type="email" name="email" required>
+            </div>
+        </div>
+        <div>
+            <div>
+                <label> Telefone:</label>
+                <input type="text" name="telefone" required>
+            </div>
+        </div>
+        
+        <div>
+            <div>
+                <label> Endereço:</label>
+                <input type="text" name="endereco" required>
+            </div>
+        </div>
+        
+        <div>
+            <div>
+                <label> Observação:</label>
+                <textarea type="text" name="observacao" required> </textarea>
+            </div>
+        </div>
+        <button type="submit" class="btn-primary ">Cadastrar</button>
+        
+        <div id="mensagem"></div>
+    </form>
+</main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <script src="assets/js/main.js"></script>
 
-     <footer class="text-center mt-5 p-3 text-white bg-dark">
-        <p>Sistema de Cadastro | Desenvolvido para fins didáticos</p>
-     </footer>
+    <footer class="text-center mt-5 p-3 text-white bg-dark"> Sistema de Cadastro | Desenvolvimento a fins didáticos</footer>
 
 </body>
+
 </html>

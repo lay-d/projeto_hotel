@@ -4,7 +4,7 @@
 }
 
 body {
-    background: linear-gradient(135deg, #9800c7, #b459d5);
+    background: linear-gradient(135deg, #9800c7, #d181ee);
 
     color: #000;
 
@@ -16,13 +16,13 @@ form {
     border-radius: 15px;
 }
 .btn-primary {
-    background-color: #9800c7;
+    background-color: #cb4ef1;
     border-color:  #b459d5 ;
 
 }
 
 .btn-primary:hover {
-    background-color: #b459d5 ;
+    background-color: #e0a8f5 ;
 
     border-color: #9800c7;
 }
