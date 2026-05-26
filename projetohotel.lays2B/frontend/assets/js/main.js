@@ -87,3 +87,45 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
 });
+
+const canvas = document.createElement('canvas');
+canvas.id = 'snowCanvas';
+document.body.appendChild(canvas);
+
+const ctx = canvas.getContext('2d');
+
+let snowflakes = [];
+let mouseX = 0
+
+
+function resizeCanvas () {
+    canvas.width = window.innerWidth
+    canvas.height = Window.innerHeight
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+
+window.addEventListener('mousemove', e => mouseX = e.clientX);
+
+function createSnowflakes(count) {
+    for (let i = 0; i < count; i++) {
+        snowflakes.push({
+            x:Math.random() * canvas.width,
+            y:Math.random() * canvas.height,
+            r:Math.random() * 4 + 1,
+            d:Math.random() * + 1
+        });
+    }
+}
+createsSnowflakes(40);
+
+function drawSnow() {
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "white";
+    ctx.beginPath();
+
+    for (let flake of snowflakes) {
+        ctx.moveTo(flake)
+    }
+}

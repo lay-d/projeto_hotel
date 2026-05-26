@@ -12,7 +12,7 @@ body {
 }
 
 form {
-    background-color: #ffffffcc;
+    background-color: #f339f0cc;
     border-radius: 15px;
 }
 .btn-primary {
@@ -29,7 +29,7 @@ form {
 
 footer {
     background-color: #070008;
-    color: #f1eff1;
+    color: #d03dd0;
 }
 
 .bg-gradient {
@@ -51,8 +51,8 @@ footer {
 }
 
 .nav-link:hover {
-    color: #fffae6 !important;
-    text-shadow: 0px 0px 6px rgba(255, 255, 255, 0.7);
+    color: #c12eab !important;
+    text-shadow: 0px 0px 6px rgba(238, 23, 149, 0.7);
 }
 
 .navbar {
@@ -71,3 +71,6 @@ footer {
     z-index: 9999;
 }
 
+.containerPesquisa {
+    background-color: #c12eab;
+}
