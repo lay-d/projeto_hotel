@@ -4,7 +4,7 @@
 }
 
 body {
-    background: linear-gradient(135deg, #9800c7, #d181ee);
+    background: linear-gradient(135deg, #9800c7, #9801ce);
 
     color: #000;
 
@@ -12,7 +12,7 @@ body {
 }
 
 form {
-    background-color: #f339f0cc;
+    background-color: #c96cea;
     border-radius: 15px;
 }
 .btn-primary {
@@ -33,7 +33,7 @@ footer {
 }
 
 .bg-gradient {
-    background: linear-gradient(90deg, #b90bbf, #fc2de0);
+    background: linear-gradient(90deg, #b90bbf, #c961fc);
     box-shadow: 0px 4px 8px rgba(181, 12, 223, 0.3);
 }
 
@@ -51,8 +51,8 @@ footer {
 }
 
 .nav-link:hover {
-    color: #c12eab !important;
-    text-shadow: 0px 0px 6px rgba(238, 23, 149, 0.7);
+    color: #e86afc !important;
+    text-shadow: 0px 0px 6px rgba(213, 73, 228, 0.86);
 }
 
 .navbar {
@@ -72,5 +72,10 @@ footer {
 }
 
 .containerPesquisa {
-    background-color: #c12eab;
+    background-color: #c96cea;
+    border-radius: 15px;
+}
+
+.containerAlterar {
+    background-color: #c96cea;
 }
