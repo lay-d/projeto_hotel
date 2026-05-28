@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alterar Cliente</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+   
+    <div class="containerAlterar"></div>
+    <h2>Alterar Dados do Cliente</h2>
+
+<form id="formAlterar">
+    <input type="hidden" id="clienteId">
+    <div>
+        <label>Nome:</label>
+        <input type="text" id="nome" required>
+    </div>
+    <div>
+        <label>CPF:</label>
+        <input type="text" id="CPF" required>
+    </div>
+    <div>
+        <label>Email:</label>
+        <input type="email" id="email" required>
+    </div>
+    <div>
+        <label>Telefone:</label>
+        <input type="text" id="Telefone" required>
+    </div>
+    <div>
+        <label>Endereço:</label>
+        <input type="text" id="endereco" required>
+    </div>
+    <div>
+        <label>Observações:</label>
+        <textarea id="observacoes"></textarea>
+    </div>
+    <button type="submit">Salvar Alterações</button>
+</form>
+
+<div id="mensagem"></div>
+
+<script src="assets/js/main.js"></script>
+
+<footer class="text-center mt-5 p-3 text-white bg-dark">
+    <p>Sistema de Cadastro | Desenvolvido para fins didáticos</p>
+ </footer>
+
+</body>
+</html>
