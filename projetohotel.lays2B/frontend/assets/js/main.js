@@ -100,7 +100,7 @@ let mouseX = 0
 
 function resizeCanvas () {
     canvas.width = window.innerWidth
-    canvas.height = Window.innerHeight
+    canvas.height = window.innerHeight
 }
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
@@ -113,11 +113,11 @@ function createSnowflakes(count) {
             x:Math.random() * canvas.width,
             y:Math.random() * canvas.height,
             r:Math.random() * 4 + 1,
-            d:Math.random() * + 1
+            d:Math.random() * 2 + 1
         });
     }
 }
-createsSnowflakes(40);
+createSnowflakes(40);
 
 function drawSnow() {
 
